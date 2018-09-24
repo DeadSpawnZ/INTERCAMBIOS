@@ -3,30 +3,18 @@ CREATE DATABASE inter;
 USE inter;
 
 CREATE TABLE usuario(
-	id_usuario INT NOT NULL AUTO_INCREMENT,
 	correo VARCHAR(30) NOT NULL,
     pass VARCHAR(20) NOT NULL,
 	nombre VARCHAR(30) NOT NULL,
     apellidop VARCHAR(20) NOT NULL,
     apellidom VARCHAR(20),
     alias VARCHAR(20),
-    PRIMARY KEY (id_usuario)
+    PRIMARY KEY (correo)
 );
 
 CREATE TABLE usuario_n(
-	id_usuario_n INT NOT NULL AUTO_INCREMENT,
 	correo VARCHAR(30) NOT NULL,
-    PRIMARY KEY (id_usuario_n)
-);
-
-CREATE TABLE amistad(
-	id_amistad INT NOT NULL AUTO_INCREMENT,
-    id_usuario1 INT NOT NULL,
-    id_usuario2 INT NOT NULL,
-    nombre_relativo VARCHAR(30) NOT NULL,
-	FOREIGN KEY (id_usuario1) REFERENCES usuario(id_usuario) ON DELETE CASCADE,
-    FOREIGN KEY (id_usuario2) REFERENCES usuario(id_usuario) ON DELETE CASCADE,
-	PRIMARY KEY (id_amistad)
+    PRIMARY KEY (correo)
 );
 
 CREATE TABLE grupo(
@@ -40,13 +28,23 @@ CREATE TABLE grupo(
     PRIMARY KEY (id_grupo)
 );
 
+CREATE TABLE amistad(
+	id_amistad INT NOT NULL AUTO_INCREMENT,
+    id_usuario1 VARCHAR(30) NOT NULL,
+    id_usuario2 VARCHAR(30) NOT NULL,
+    nombre_relativo VARCHAR(30) NOT NULL,
+	FOREIGN KEY (id_usuario1) REFERENCES usuario(correo) ON DELETE CASCADE,
+    FOREIGN KEY (id_usuario2) REFERENCES usuario(correo) ON DELETE CASCADE,
+	PRIMARY KEY (id_amistad)
+);
+
 CREATE TABLE intercambio(
 	id_intercambio INT NOT NULL AUTO_INCREMENT,
-    id_usuario1 INT NOT NULL,
-    id_usuario2 INT,
+    id_usuario1 VARCHAR(30) NOT NULL,
+    id_usuario2 VARCHAR(30),
     estado VARCHAR(30) NOT NULL,
-    FOREIGN KEY (id_usuario1) REFERENCES usuario(id_usuario) ON DELETE CASCADE,
-    FOREIGN KEY (id_usuario2) REFERENCES usuario(id_usuario) ON DELETE CASCADE,
+    FOREIGN KEY (id_usuario1) REFERENCES usuario(correo) ON DELETE CASCADE,
+    FOREIGN KEY (id_usuario2) REFERENCES usuario(correo) ON DELETE CASCADE,
     PRIMARY KEY (id_intercambio)
 );
 
