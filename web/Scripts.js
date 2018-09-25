@@ -47,9 +47,13 @@ function f_inicio(){
     });    
 }
 //SCRIPTS INTERCAMBIO.HTML
+var participantes;
+var arr;
 function inicia(){
     get_datos();
     consulta_amigos();
+    participantes = [];
+    arr = [];
 }
 
 function get_datos(){
@@ -60,6 +64,7 @@ function get_datos(){
         },
         success: function(JSONRespuesta){
             var arr = JSON.parse(JSONRespuesta);
+            console.log("DATOS DEL USUARIO1")
             console.log(arr);
             for(var i = 0; i < arr.length; i++){
                 $("#nombre_usuario").append(arr[i].nombre);
@@ -75,7 +80,8 @@ function consulta_amigos(){
         data: {
         },
         success: function(JSONRespuesta){
-            var arr = JSON.parse(JSONRespuesta);
+            arr = JSON.parse(JSONRespuesta);
+            console.log("AMIGOS CONSULTADOS");
             console.log(arr);
             for(var i = 0; i < arr.length; i++){
                 $("#lista_amigos").append("<li id="+arr[i].id_usuario2+" class='list-group-item' ondblclick='agrega_participante(this.id)'>"+arr[i].nombre_relativo+"<span class='badge badge-success float-right'>"+arr[i].id_usuario2+"</span></li>");
@@ -96,12 +102,57 @@ function agrega_amigos(){
             alert(responseText);
             console.log(responseText);
         }
-    }); 
+    });
+    consulta_amigos();
 }
 
 function agrega_participante(id_participante){
-    /*var array = 
-    for(var i = 0; i < array.length; i++){
-        $("#lista_amigos").pa
-    }*/
+    if(participantes.includes(id_participante)){
+        alert("YA ESTÁ AGREGADO");
+    }else{
+        $("#lista_participantes").html("");
+        participantes.push(id_participante);
+        for(var i = 0; i < participantes.length; i++){
+            for(var j = 0; j < arr.length; j++){
+                if(participantes[i] === arr[j].id_usuario2){
+                    $("#lista_participantes").append("<li class='list-group-item'>"+arr[j].nombre_relativo+"<span class='badge badge-primary float-right'>"+arr[j].id_usuario2+"</span><i id="+arr[j].id_usuario2+" onclick='borra_participante(this.id)' class='fa fa-trash float-right mr-3'></i></li>");
+                }
+            }
+        }
+    }
+}
+
+function borra_participante(id_participante){
+    if(participantes.includes(id_participante)){
+        participantes.splice(participantes.lastIndexOf(id_participante), 1);
+        $("#lista_participantes").html("");
+        for(var i = 0; i < participantes.length; i++){
+            for(var j = 0; j < arr.length; j++){
+                if(participantes[i] === arr[j].id_usuario2){
+                    $("#lista_participantes").append("<li class='list-group-item'>"+arr[j].nombre_relativo+"<span class='badge badge-primary float-right'>"+arr[j].id_usuario2+"</span><i id="+arr[j].id_usuario2+" onclick='borra_participante(this.id)' class='fa fa-trash float-right mr-3'></i></li>");
+                }
+            }
+        }
+    }
+}
+
+function registra_inter(){
+    console.log(participantes);
+    $.ajax({
+        type: 'POST',
+        url: 'Agrega_Inter',
+        data: {
+            temas:             $('#temas').val(),
+            monto_max:              $('#monto_max').val(),
+            fecha_inter:            $('#fecha_inter').val(),
+            fecha_limite:           $('#fecha_limite').val(),
+            comentarios:            $('#comentarios').val(),
+            participantes:          JSON.stringify(participantes)
+        },
+        success: function(responseText){
+            if(responseText == "EXITOEXITO"){
+                alert("INTERCAMBIO REGISTRADO BIEN OK");
+            }
+        }
+    }); 
 }
