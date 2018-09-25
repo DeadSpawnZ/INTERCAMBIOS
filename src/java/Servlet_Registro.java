@@ -1,11 +1,8 @@
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.*;
 /**
  *
  * @author Spawn
@@ -23,37 +20,16 @@ public class Servlet_Registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombre = (String)request.getParameter("nombre");
-        
-        
-        Connection con = null;
-        Statement stm = null;
-        ResultSet r = null;
-        String base = "inter";
-        String usuario = "root";
-        String contraseña = "contra";
-        System.out.println("LO QUE PEGA EL DARIUS");
-        try{
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://localhost/"+base, usuario, contraseña);
-            stm = con.createStatement();
-            System.out.println("CONECTADO CORRECTAMENTE");
-            
-        } catch (ClassNotFoundException ex) {
-            System.out.println("ClassNotFoundException");
-        } catch (InstantiationException ex) {
-            System.out.println("InstantiationException");
-        } catch (IllegalAccessException ex) {
-            System.out.println("IllegalAccessException");
-        } catch (SQLException ex) {
-            System.out.println("SQLException");
-            System.out.println(ex);
-        }
         response.setContentType("text/plain");
-        response.getWriter().write(nombre+nombre);
+        String correo = (String)request.getParameter("correo");
+        String pass = (String)request.getParameter("pass");
+        String nombre = (String)request.getParameter("nombre");
+        String apellidop = (String)request.getParameter("apellidop");
+        String apellidom = (String)request.getParameter("apellidom");
+        String alias = (String)request.getParameter("alias");
         
-        
-        
+        String resp = Conexion.insertar("INSERT INTO usuario(correo, pass, nombre, apellidop, apellidom, alias) VALUES('"+correo+"','"+pass+"','"+nombre+"','"+apellidop+"','"+apellidom+"','"+alias+"');");
+        response.getWriter().write(resp);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Inicio</title>
@@ -12,12 +7,15 @@ and open the template in the editor.
     </head>
     <body>
         <div>
-            <form>
-                Iniciar sesión<br/>
-                Correo<input name="correo" type="text"/>
-                Contraseña<input name="password" type="password"/>
+            <form id="formIni" onsubmit="f_inicio(); return false">
+                Bienvenido<br/>
+                Correo<input id="correo" type="text" required/>
+                Contraseña<input id="pass" type="password" required/>
+                <input type="submit" value="Iniciar sesión"/>
             </form>
             <a href="Registro.html">Registrarse</a>
         </div>
+        <script src="Scripts.js"></script>
+        <script src="ajax.js" type="text/javascript"></script>
     </body>
 </html>

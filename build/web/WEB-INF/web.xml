@@ -4,9 +4,33 @@
         <servlet-name>Servlet_Registro</servlet-name>
         <servlet-class>Servlet_Registro</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Servlet_Inicio</servlet-name>
+        <servlet-class>Servlet_Inicio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Agrega_Amigos</servlet-name>
+        <servlet-class>Agrega_Amigos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogOut</servlet-name>
+        <servlet-class>LogOut</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Registro</servlet-name>
         <url-pattern>/Servlet_Registro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Inicio</servlet-name>
+        <url-pattern>/Servlet_Inicio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Agrega_Amigos</servlet-name>
+        <url-pattern>/Agrega_Amigos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/LogOut</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
