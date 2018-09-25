@@ -20,6 +20,10 @@
         <servlet-name>Consulta_Amigos</servlet-name>
         <servlet-class>Consulta_Amigos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Data_Session</servlet-name>
+        <servlet-class>Data_Session</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Registro</servlet-name>
         <url-pattern>/Servlet_Registro</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>Consulta_Amigos</servlet-name>
         <url-pattern>/Consulta_Amigos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Data_Session</servlet-name>
+        <url-pattern>/Data_Session</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

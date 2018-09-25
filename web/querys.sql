@@ -19,12 +19,13 @@ CREATE TABLE usuario_n(
 
 CREATE TABLE grupo(
 	id_grupo INT NOT NULL AUTO_INCREMENT,
-    id_creador INT NOT NULL,
+    id_creador VARCHAR(30) NOT NULL,
     tema_inter VARCHAR(144) NOT NULL, 
     monto_max INT(6) NOT NULL,
     fecha_inter VARCHAR(20) NOT NULL,
     fecha_limite VARCHAR(20) NOT NULL,
     comentarios VARCHAR(144),
+    FOREIGN KEY (id_creador) REFERENCES usuario(correo) ON DELETE CASCADE,
     PRIMARY KEY (id_grupo)
 );
 
@@ -40,11 +41,13 @@ CREATE TABLE amistad(
 
 CREATE TABLE intercambio(
 	id_intercambio INT NOT NULL AUTO_INCREMENT,
+    id_grupo INT NOT NULL,
     id_usuario1 VARCHAR(30) NOT NULL,
     id_usuario2 VARCHAR(30),
     estado VARCHAR(30) NOT NULL,
     FOREIGN KEY (id_usuario1) REFERENCES usuario(correo) ON DELETE CASCADE,
     FOREIGN KEY (id_usuario2) REFERENCES usuario(correo) ON DELETE CASCADE,
+    FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo) ON DELETE CASCADE,
     PRIMARY KEY (id_intercambio)
 );
 

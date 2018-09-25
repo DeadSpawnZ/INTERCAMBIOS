@@ -33,9 +33,10 @@ public class Servlet_Inicio extends HttpServlet {
         System.out.println("JSON CHIDO: "+resp.toJSONString());
         String datos;
         if(resp.size() == 1){
-            datos = resp.toJSONString();
+            datos = "BIENVENIDO";
             HttpSession misession = request.getSession(true);
             misession.setAttribute("id_usuario", correo);
+            misession.setAttribute("datos", resp);
         }else{
             datos = "SIN REGISTRO";
         }

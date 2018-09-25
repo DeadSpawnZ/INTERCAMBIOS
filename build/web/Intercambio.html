@@ -19,7 +19,7 @@
     <body id="page-top" onload="inicia()">
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-            <a class="navbar-brand mr-1" href="Intercambio.html">LA GFA DE BRANDON click aqui</a>
+            <a id="nombre_usuario" class="navbar-brand mr-1" href="Intercambio.html">Hola, </a>
 
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
               <i class="fas fa-bars"></i>
@@ -98,11 +98,26 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
-                </a>
-            </li>
+                    <a class="nav-link" href="tables.html">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Tables</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="card text-white bg-dark mb-3">
+                        <div class="card-header">
+                            <i class="fas fa-child"></i>
+                            Agregar amigos</div>
+                        <div class="card-body">
+                            <form onsubmit="agrega_amigos(); return false">
+                                <input id="correo" type="text" placeholder="Correo"/><br/>
+                                <input id="nombre_relativo" type="text" placeholder="Nombre"/><br/>
+                                <input type="submit" value="Agregar">
+                            </form>
+                        </div>
+                        <div class="card-footer small text-muted"></div>
+                    </div>
+                </li>
             </ul>
 
             <div id="content-wrapper">
@@ -116,22 +131,51 @@
                         <li class="breadcrumb-item active">Overview</li>
                     </ol>
 
+                
+                <div class="row m-0">
+                <!-- Intercambiometro3000-->
+                    <div class="card mb-3 col-8 pl-0 pr-0">
+                        <div class="card-header">
+                            <i class="fas fa-gift"></i>
+                            Nuevo intercambio</div>
+                        <div class="card-body">
+                            <form onsubmit="Registra_Inter; return false">
+                                Tema del intercambio <input id="tema_inter" class="form-control" type="text" required/><br/>
+                                Monto máximo $ <input id="monto_max" class="form-control" type="number" required> pesos<br/>
+                                Fecha del intercambio <input id="fecha_inter" class="form-control" type="date" required><br/>
+                                Fecha límite <input id="fecha_limite" class="form-control" type="date" required><br/>
+                                Comentarios<br>
+                                <textarea id="comentarios" class="form-control" rows="4"></textarea>
+                                Participantes
+                                <ul id="lista_participantes" class="list-group">
+                                    <!--PARTICIPANTES AGREGADOS DINAMICAMENTE-->
+                                </ul><br/>
+                                <input type="submit" value="Crear">
+                            </form>
+                        </div>
+                        <div class="card-footer small text-muted"></div>
+                    </div>
                 <!-- Amigometro-->
-                    <div class="row">
-                        <form onsubmit="agrega_amigos(); return false">
-                            Agregar amigo<br/>
-                            <input id="correo" type="text" placeholder="Correo"/><br/>
-                            <input id="nombre_relativo" type="text" placeholder="Nombre"/><br/>
-                            <input type="submit" value="Agregar">
-                        </form>
+                    <div class="card mb-3 col-4 pl-0 pr-0">
+                        <div class="card-header">
+                            <i class="fas fa-user-friends"></i>
+                            Mis amigos</div>
+                        <div class="card-body">
+                            <ul id="lista_amigos" class="list-group">
+                                <!--AMIGOS AGREGADOS DINAMICAMENTE-->
+                            </ul>
+                        </div>
+                        <div class="card-footer small text-muted"></div>
                     </div>
                 <!-- /.container-fluid -->
-
+                </div>
+                
+                
                 <!-- Sticky Footer -->
                     <footer class="sticky-footer">
                         <div class="container my-auto">
                             <div class="copyright text-center my-auto">
-                                <span>Copyright © Your Website 2018</span>
+                                <span>Copyright © ZUNIX S.A de R.L 2018</span>
                             </div>
                         </div>
                     </footer>

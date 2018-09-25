@@ -6,12 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
  * @author Spawn
  */
-public class Consulta_Amigos extends HttpServlet {
+public class Data_Session extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -26,10 +27,7 @@ public class Consulta_Amigos extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession misession = (HttpSession) request.getSession();
-        String id_usuario1 = (String) misession.getAttribute("id_usuario");
-        
-        JSONArray resp = Conexion.consultar("SELECT id_amistad, id_usuario2, nombre_relativo FROM amistad WHERE id_usuario1 = '"+id_usuario1+"';");
-        System.out.println("AMIGOS: "+resp.toJSONString());
+        JSONArray resp = (JSONArray) misession.getAttribute("datos");
         String datos = resp.toJSONString();
         response.getWriter().write(datos);
     }
