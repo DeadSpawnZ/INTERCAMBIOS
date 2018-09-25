@@ -49,3 +49,5 @@ CREATE TABLE intercambio(
 );
 
 SELECT * FROM usuario;
+
+SELECT * FROM amistad;

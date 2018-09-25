@@ -42,19 +42,15 @@ function inicia(){
     consulta_amigos();
 }
 function consulta_amigos(){
-    /*$.ajax({
+    $.ajax({
         type: 'POST',
-        url: 'Servlet_Amigos',
+        url: 'Consulta_Amigos',
         data: {
-            correo:     $('#correo').val(),
-            pass:       $('#pass').val()
         },
         success: function(responseText){
-            if(responseText !== "SIN REGISTRO"){
-                location.href="Intercambio.html";
-            }
+            /*DO SOMTHING*/
         }
-    }); */
+    });
 }
 function agrega_amigos(){
     $.ajax({
@@ -66,6 +62,7 @@ function agrega_amigos(){
         },
         success: function(responseText){
             alert(responseText);
+            console(responseText);
         }
     }); 
 }

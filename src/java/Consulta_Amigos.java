@@ -5,12 +5,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.simple.JSONArray;
 
 /**
  *
  * @author Spawn
  */
-public class Agrega_Amigos extends HttpServlet {
+public class Consulta_Amigos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -23,14 +24,19 @@ public class Agrega_Amigos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/plain");
+        response.setContentType("text/html;charset=UTF-8");
         HttpSession misession = (HttpSession) request.getSession();
         String id_usuario1 = (String) misession.getAttribute("id_usuario");
-        String id_usuario2 = (String)request.getParameter("correo");
-        String nombre_relativo = (String)request.getParameter("nombre_relativo");
         
-        String resp = Conexion.insertar("INSERT INTO amistad(id_usuario1, id_usuario2, nombre_relativo) VALUES('"+id_usuario1+"','"+id_usuario2+"','"+nombre_relativo+"');");
-        response.getWriter().write(resp);
+        JSONArray resp = Conexion.consultar("SELECT id_amistad, id_usuario2, nombre_relativo FROM amistad WHERE id_usuario1 = '"+id_usuario1+"';");
+        System.out.println("AMIGOS: "+resp.toJSONString());
+        String datos;
+        if(resp.size() > 1){
+            datos = resp.toJSONString();
+        }else{
+            datos = "SIN REGISTRO";
+        }
+        response.getWriter().write(datos);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
