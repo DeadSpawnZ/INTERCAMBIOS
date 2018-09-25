@@ -1,6 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,9 +15,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Spawn
+ * @author Brandon
  */
-public class LogOut extends HttpServlet {
+@WebServlet(urlPatterns = {"/sessionFake"})
+public class sessionFake extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -23,10 +31,20 @@ public class LogOut extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();  
-        session.invalidate();  
-        System.out.println("logOut");
-        response.sendRedirect("index.html");
+        response.setContentType("text/plain");
+        String correo;
+        try {
+            HttpSession misession = request.getSession(true);
+            correo= (String) misession.getAttribute("id_usuario");
+            if(correo==null){
+                misession.invalidate();
+                correo= "304";
+            }
+        }catch(Exception ex){
+            System.out.println("sessionFake.java: "+ex.getMessage());
+            correo= "305";
+        }
+        response.getWriter().write(correo);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,25 +1,85 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Registro</title>
+        <title>Inicio</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>
-            <form id='formReg' onsubmit="f_registro(); return false">
-                Ingresa los siguientes datos<br/>
-                Nombre<input id="nombre" type="text" required/><br/>
-                Apellido Paterno<input id="apellidop" type="text" required/><br/>
-                Apellido Materno*<input id="apellidom" type="text" required/><br/>
-                Alias*<input id="alias" type="text" required/><br/>
-                Correo<input id="correo" type="text" required/><br/>
-                Contraseña<input id="pass" type="password" required/><br/>
-                Confirma contraseña<input id="pass2" type="password" required/><br/>
-                <input type="submit" value="Registrarme"/>
-            </form>
-        </div>
+    
+        <script src="vendor/jquery/jquery.min.js" type="text/javascript"></script>
         <script src="Scripts.js"></script>
         <script src="ajax.js" type="text/javascript"></script>
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="vendor/jquery-easing/jquery.easing.min.js" type="text/javascript"></script>
+        <link href="css/adapt.css" rel="stylesheet" type="text/css"/>
+        <script>
+            $.get('sessionFake', function(status){
+                if(status!=="304"){
+                    if(status==="305"){
+                        alert("Error en el servlet de sesión");
+                    }else{
+                        location.href="Intercambio.html";
+                    }
+                }
+            });
+        </script>
+    </head>
+    <body class="bg-dark">
+        <div class="container">
+          <div class="card card-login mx-auto mt-5">
+            <div class="card-header">Registrarse</div>
+            <div class="card-body">
+                <form id="formReg" onsubmit="f_registro(); return false">
+                    <center><h4>Ingresa los siguientes datos</h4></center><br>
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="text" id="nombre" class="form-control" placeholder="" required="required" autofocus="autofocus">
+                    <label class="lform" for="nombre">Nombre</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="text" id="apellidop" class="form-control" placeholder="" required="required">
+                    <label class="lform" for="apellidop">Apellido Paterno</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="text" id="apellidom" class="form-control" placeholder="" required="required">
+                    <label class="lform" for="apellidom">Apellido Materno</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="text" id="alias" class="form-control" placeholder="">
+                    <label class="lform" for="alias">Alias</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="email" id="correo" class="form-control" placeholder="" required="required">
+                    <label class="lform" for="correo">Correo</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="password" id="pass" class="form-control" placeholder="" required="required">
+                    <label class="lform" for="pass">Contraseña</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="password" id="pass2" class="form-control" placeholder="" required="required">
+                    <label class="lform" for="pass2">Confirmación de contraseña</label>
+                  </div>
+                </div>
+                <input type="submit" value="Registrarse" class="btn btn-primary btn-block"/>
+              </form>
+              <div class="text-center">
+                <a class="d-block small mt-3" href="index.html">Ir al login</a>
+              </div>
+            </div>
+          </div>
+        </div>
     </body>
 </html>

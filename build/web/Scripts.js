@@ -1,22 +1,31 @@
 /* global reponseText */
 
 function f_registro(){
-    $.ajax({
-        type: 'POST',
-        url: 'Servlet_Registro',
-        data: {
-            correo:     $('#correo').val(),
-            pass:       $('#pass').val(),
-            nombre:     $('#nombre').val(),
-            apellidop:  $('#apellidop').val(),
-            apellidom:  $('#apellidom').val(),
-            alias:      $('#alias').val()
-        },
-        success: function(responseText){
-            alert(responseText);
-            $("#formReg").trigger("reset");
-        }
-    });
+    var pass1= $('#pass').val(), pass2= $('#pass2').val();
+    if(pass1==pass2){
+        $.ajax({
+            type: 'POST',
+            url: 'Servlet_Registro',
+            data: {
+                correo:     $('#correo').val(),
+                pass:       pass1,
+                nombre:     $('#nombre').val(),
+                apellidop:  $('#apellidop').val(),
+                apellidom:  $('#apellidom').val(),
+                alias:      $('#alias').val()
+            },
+            success: function(responseText){
+                if(responseText=="EXITO"){
+                    alert("Registrado");
+                    $("#formReg").trigger("reset");
+                }else{
+                    alert("Error al realizar el registro");
+                }
+            }
+        });
+    }else{
+        alert("No coinciden las contraseñas");
+    }
 }
 
 function f_inicio(){
@@ -31,12 +40,12 @@ function f_inicio(){
             if(responseText !== "SIN REGISTRO"){
                 location.href="Intercambio.html";
             }else{
+                alert("Datos incorrectos");
                 $("#formIni").trigger("reset");
             }
         }
     });    
 }
-
 //SCRIPTS INTERCAMBIO.HTML
 function inicia(){
     get_datos();
