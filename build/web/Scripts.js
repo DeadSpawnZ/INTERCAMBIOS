@@ -70,7 +70,7 @@ function get_datos(){
         },
         success: function(JSONRespuesta){
             var arr = JSON.parse(JSONRespuesta);
-            console.log("DATOS DEL USUARIO1")
+            console.log("DATOS DEL USUARIO1");
             console.log(arr);
             for(var i = 0; i < arr.length; i++){
                 $("#nombre_usuario").append(arr[i].nombre);
@@ -91,7 +91,7 @@ function consulta_amigos(){
             console.log("AMIGOS CONSULTADOS");
             console.log(arr);
             for(var i = 0; i < arr.length; i++){
-                $("#lista_amigos").append("<li id="+arr[i].id_usuario2+" class='list-group-item' ondblclick='agrega_participante(this.id)'>"+arr[i].nombre_relativo+"<span class='badge badge-success float-right'>"+arr[i].id_usuario2+"</span></li>");
+                $("#lista_amigos").append("<li style='cursor: pointer' id="+arr[i].id_usuario2+" class='list-group-item' ondblclick='agrega_participante(this.id)'>"+arr[i].nombre_relativo+"<span class='badge badge-success float-right'>"+arr[i].id_usuario2+"</span></li>");
             }
         }
     });
@@ -108,7 +108,7 @@ function consulta_amigos_n(){
             console.log("AMIGOS CONSULTADOS N");
             console.log(arr_n);
             for(var i = 0; i < arr_n.length; i++){
-                $("#lista_amigos").append("<li id="+arr_n[i].id_usuario2+" class='list-group-item' ondblclick='agrega_participante(this.id)'>"+arr_n[i].nombre_relativo+"<span class='badge badge-info float-right'>"+arr_n[i].id_usuario2+"</span></li>");
+                $("#lista_amigos").append("<li style='cursor: pointer' id="+arr_n[i].id_usuario2+" class='list-group-item' ondblclick='agrega_participante(this.id)'>"+arr_n[i].nombre_relativo+"<span class='badge badge-info float-right'>"+arr_n[i].id_usuario2+"</span></li>");
             }
         }
     });
@@ -125,7 +125,7 @@ function agrega_amigos(){
         success: function(responseText){
             alert(responseText);
             console.log(responseText);
-            amigos();
+            location.href="Intercambio.html";
         }
     });
 }
@@ -179,7 +179,13 @@ function registra_inter(){
         success: function(responseText){
             if(responseText == "EXITOEXITO"){
                 alert("INTERCAMBIO REGISTRADO BIEN OK");
+                location.href="Intercambio.html";
             }
         }
     }); 
+}
+
+function consultaInter(codeI){
+    localStorage.setItem("key", codeI);
+    location.href="Intercambio_gest.html";
 }

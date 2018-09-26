@@ -32,6 +32,14 @@
         <servlet-name>Consulta_Amigos_N</servlet-name>
         <servlet-class>Consulta_Amigos_N</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Consulta_Amigos_N2</servlet-name>
+        <servlet-class>Consulta_Amigos_N2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>get_participantes</servlet-name>
+        <servlet-class>get_participantes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Registro</servlet-name>
         <url-pattern>/Servlet_Registro</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>Consulta_Amigos_N</servlet-name>
         <url-pattern>/Consulta_Amigos_N</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Consulta_Amigos_N2</servlet-name>
+        <url-pattern>/Consulta_Amigos_N2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>get_participantes</servlet-name>
+        <url-pattern>/get_participantes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

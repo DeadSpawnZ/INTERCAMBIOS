@@ -24,6 +24,12 @@
                     location.href="index.html";
                 }
             });
+            $.get('listarIntercambios', function(json){
+                var arr= JSON.parse(json);
+                for(var i = 0; i < arr.length; i++){
+                    $("#inters").append("<div style='cursor: pointer' id='"+arr[i].codigo+"' onclick='consultaInter(this.id)'><span>Código de intercambio: <b>"+arr[i].codigo+"</b></span>Fecha de intercambio: "+arr[i].fecha_inter+"&nbsp;&nbsp;&nbsp;&nbsp;Fecha de limite: "+arr[i].fecha_limite+"</div>");
+                }
+            });
         </script>
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -65,79 +71,34 @@
             <!-- Sidebar -->
             <ul class="sidebar navbar-nav">
                 <li class="nav-item" >
-                    <a class="nav-link" style="color:#ccc!important;" href="Intercambio.html">
+                    <a class="nav-link"  href="Intercambio.html">
                         <i class="fas fa-fw fa-table"></i>
                         <span >Nuevo intercambio</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Intercambio_consulta.html">
+                    <a class="nav-link" style="color:#ccc!important;" href="Intercambio_consulta.html">
                         <i class="fas fa-fw fa-folder"></i>
                         <span>Mis intercambios</span>
                     </a>
                 </li>
                 
-                <li>
-                    <div class="card text-white bg-dark mb-3">
-                        <div class="card-header">
-                            <i class="fas fa-child"></i>
-                            Agregar amigos</div>
-                        <div class="card-body">
-                            <form onsubmit="agrega_amigos(); return false">
-                                <center><input id="correo" class='inputS' type="text" placeholder="Correo"/><br/>
-                                <input id="nombre_relativo" class='inputS' type="text" placeholder="Nombre"/><br/>
-                                <input type="submit" class='buttonF' value="Agregar"></center>
-                            </form>
-                        </div>
-                        <div class="card-footer small text-muted"></div>
-                    </div>
-                </li>
             </ul>
 
             <div id="content-wrapper">
 
                 <div class="container-fluid">
-
-                
                 <div class="row m-0">
-                <!-- Intercambiometro3000-->
                     <div class="card mb-3 col-8 pl-0 pr-0">
-                        <div class="card-header">
+                    <div class="card-header">
                             <i class="fas fa-gift"></i>
-                            Nuevo intercambio</div>
-                        <div class="card-body">
-                            <form id="nInter" onsubmit="registra_inter(); return false">
-                                Temas del intercambio <input id="temas" class="form-control" type="text" required/><br/>
-                                Monto máximo $ <input id="monto_max" class="form-control" type="number" required> pesos<br/>
-                                Fecha del intercambio <input id="fecha_inter" class="form-control" type="date" required><br/>
-                                Fecha límite para registrarse <input id="fecha_limite" class="form-control" type="date" required><br/>
-                                Comentarios<br>
-                                <textarea id="comentarios" class="form-control" rows="4"></textarea>
-                                Participantes
-                                <ul id="lista_participantes" class="list-group">
-                                    <!--PARTICIPANTES AGREGADOS DINAMICAMENTE-->
-                                </ul><br/>
-                                <input type="submit" class='buttonF' style='border:0!important;width:100%;border-radius:2;' value="Crear">
-                            </form>
-                        </div>
-                        <div class="card-footer small text-muted"></div>
+                            Tus intercambios
                     </div>
-                <!-- Amigometro-->
-                    <div class="card mb-3 col-4 pl-0 pr-0">
-                        <div class="card-header">
-                            <i class="fas fa-user-friends"></i>
-                            Mis amigos</div>
-                        <div class="card-body">
-                            <ul id="lista_amigos" class="list-group">
-                                <!--AMIGOS AGREGADOS DINAMICAMENTE-->
-                            </ul>
-                        </div>
-                        <div class="card-footer small text-muted"></div>
+                    <div id='inters' class="card-body">
+                        
                     </div>
-                <!-- /.container-fluid -->
+                    </div>
                 </div>
-                
-                
                 <!-- Sticky Footer -->
                     <footer class="sticky-footer">
                         <div class="container my-auto">

@@ -7,7 +7,25 @@ and open the template in the editor.
     Created on : 24/09/2018, 09:19:55 PM
     Author     : Brandon
 */
-
+.pendiente{
+    color:#c69500!important;
+    font-size: 12px;
+    margin-left: 15px;
+}
+#inters div{
+    width: 100%;
+    border:1px solid #666;
+    padding: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    color:#333;
+}
+#inters div span{
+    margin-right:30px;
+}
+#inters div:hover{
+    background:#eee;
+}
 .card-login {
     max-width: 25rem!important;
 }
@@ -16,4 +34,25 @@ and open the template in the editor.
     margin:5px;
     color: #666;
     font-size:14px;
+}
+
+.inputS{
+    border-radius:3px;
+    padding:3px;
+    margin-bottom:15px;
+    color:#333;
+    font-size:14px;
+}
+
+.buttonF{
+    border-radius:5px;
+    background:#048bca;
+    color:#fff;
+    border:1px solid #333;
+    padding:5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align:center;
+    font-size:15px;
+    cursor:pointer;
 }

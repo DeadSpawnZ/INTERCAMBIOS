@@ -1,65 +1,18 @@
-/* global reponseText */
 
-function f_registro(){
-    var pass1= $('#pass').val(), pass2= $('#pass2').val();
-    if(pass1==pass2){
-        $.ajax({
-            type: 'POST',
-            url: 'Servlet_Registro',
-            data: {
-                correo:     $('#correo').val(),
-                pass:       pass1,
-                nombre:     $('#nombre').val(),
-                apellidop:  $('#apellidop').val(),
-                apellidom:  $('#apellidom').val(),
-                alias:      $('#alias').val()
-            },
-            success: function(responseText){
-                if(responseText=="EXITO"){
-                    alert("Registrado");
-                    $("#formReg").trigger("reset");
-                }else{
-                    alert("Error al realizar el registro");
-                }
-            }
-        });
-    }else{
-        alert("No coinciden las contraseñas");
-    }
-}
-
-function f_inicio(){
-    $.ajax({
-        type: 'POST',
-        url: 'Servlet_Inicio',
-        data: {
-            correo:     $('#correo').val(),
-            pass:       $('#pass').val()
-        },
-        success: function(responseText){
-            if(responseText !== "SIN REGISTRO"){
-                location.href="Intercambio.html";
-            }else{
-                alert("Datos incorrectos");
-                $("#formIni").trigger("reset");
-            }
-        }
-    });    
-}
-//SCRIPTS INTERCAMBIO.HTML
 var participantes;
 var arr, arr_n;
-function inicia(){
+function inicia(codigo){
     get_datos();
-    amigos();
     participantes = [];
+    amigos(codigo);
     arr = [];
     arr_n = [];
 }
 
-function amigos(){
+function amigos(codigo){
     consulta_amigos();
     consulta_amigos_n();
+    set_participantes(codigo);
 }
 
 function get_datos(){
@@ -91,7 +44,7 @@ function consulta_amigos(){
             console.log("AMIGOS CONSULTADOS");
             console.log(arr);
             for(var i = 0; i < arr.length; i++){
-                $("#lista_amigos").append("<li style='cursor: pointer' id="+arr[i].id_usuario2+" class='list-group-item' ondblclick='agrega_participante(this.id)'>"+arr[i].nombre_relativo+"<span class='badge badge-success float-right'>"+arr[i].id_usuario2+"</span></li>");
+                $("#lista_amigos").append("<li style='cursor: pointer' id='"+arr[i].id_usuario2+"' class='list-group-item' ondblclick='agrega_participante(this.id)'>"+arr[i].nombre_relativo+"<span class='badge badge-success float-right'>"+arr[i].id_usuario2+"</span></li>");
             }
         }
     });
@@ -108,24 +61,8 @@ function consulta_amigos_n(){
             console.log("AMIGOS CONSULTADOS N");
             console.log(arr_n);
             for(var i = 0; i < arr_n.length; i++){
-                $("#lista_amigos").append("<li style='cursor: pointer' id="+arr_n[i].id_usuario2+" class='list-group-item' ondblclick='agrega_participante(this.id)'>"+arr_n[i].nombre_relativo+"<span class='badge badge-info float-right'>"+arr_n[i].id_usuario2+"</span></li>");
+                $("#lista_amigos").append("<li style='cursor: pointer' id='"+arr_n[i].id_usuario2+"' class='list-group-item' ondblclick='agrega_participante(this.id)'>"+arr_n[i].nombre_relativo+"<span class='badge badge-info float-right'>"+arr_n[i].id_usuario2+"</span></li>");
             }
-        }
-    });
-}
-
-function agrega_amigos(){
-    $.ajax({
-        type: 'POST',
-        url: 'Agrega_Amigos',
-        data: {
-            correo:                 $('#correo').val(),
-            nombre_relativo:        $('#nombre_relativo').val()
-        },
-        success: function(responseText){
-            alert(responseText);
-            console.log(responseText);
-            location.href="Intercambio.html";
         }
     });
 }
@@ -177,7 +114,7 @@ function registra_inter(){
             participantes:          JSON.stringify(participantes)
         },
         success: function(responseText){
-            if(responseText == "EXITOEXITO"){
+            if(responseText == "EXITO"){
                 alert("INTERCAMBIO REGISTRADO BIEN OK");
                 location.href="Intercambio.html";
             }
@@ -185,7 +122,31 @@ function registra_inter(){
     }); 
 }
 
-function consultaInter(codeI){
-    localStorage.setItem("key", codeI);
-    location.href="Intercambio_gest.html";
+function set_participantes(codigo){
+    $.ajax({
+        type: 'POST',
+        url: 'get_participantes',
+        data: {codigo:codigo
+        },
+        success: function(JSONr){
+        participantes = JSON.parse(JSONr);
+        var temp="", temp2="";
+        for(var i = 0; i < participantes.length; i++){
+            temp = participantes[i].id_usuario1.toString();
+            temp = temp.substr(1,temp.length-2);
+            for(var j = 0; j < arr.length; j++){
+                temp2= arr[j].id_usuario2.toString();
+                if(temp==temp2){
+                    $("#lista_participantes").append("<li class='list-group-item'>"+arr[j].nombre_relativo+"<span style='background:#28a745;' class='badge badge-primary float-right'>"+participantes[i].id_usuario1+"</span><i id="+participantes[i].id_usuario1+" onclick='borra_participante(this.id)' class='fa fa-trash float-right mr-3'></i><span class='pendiente'>"+participantes[i].estado+"</span></li>");
+                }
+            }
+            for(var j = 0; j < arr_n.length; j++){
+                temp2= arr_n[j].id_usuario2.toString();
+                if(temp==temp2){
+                    $("#lista_participantes").append("<li class='list-group-item'>"+arr_n[j].nombre_relativo+"<span style='background:#17a2b8;' class='badge badge-primary float-right'>"+participantes[i].id_usuario1+"</span><i id="+participantes[i].id_usuario1+" onclick='borra_participante(this.id)' class='fa fa-trash float-right mr-3'></i><span class='pendiente'>"+participantes[i].estado+"</span></li>");
+                }
+            }
+        }
+    }});
 }
+

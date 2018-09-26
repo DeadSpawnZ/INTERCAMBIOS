@@ -24,7 +24,7 @@ public class Conexion {
     static ResultSet r = null;
     static String base = "inter";
     static String usuario = "root";
-    static String contraseña = "contra";
+    static String contraseña = "proyectos";
     
     public static void conectar(){
         try{
