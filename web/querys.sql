@@ -60,3 +60,7 @@ create table amistad_n (
 	 foreign key (id_usuario2) references usuario_n(correo) on delete cascade, 
 	 primary key(id_amistad_n)
  );
+ 
+ select * from amistad_n;
+ select * from usuario_n;
+ select * from intercambio;

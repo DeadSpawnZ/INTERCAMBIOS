@@ -28,6 +28,10 @@
         <servlet-name>Agrega_Inter</servlet-name>
         <servlet-class>Agrega_Inter</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Consulta_Amigos_N</servlet-name>
+        <servlet-class>Consulta_Amigos_N</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Registro</servlet-name>
         <url-pattern>/Servlet_Registro</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>Agrega_Inter</servlet-name>
         <url-pattern>/Agrega_Inter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Consulta_Amigos_N</servlet-name>
+        <url-pattern>/Consulta_Amigos_N</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
