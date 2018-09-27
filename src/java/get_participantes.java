@@ -36,7 +36,7 @@ public class get_participantes extends HttpServlet {
         JSONArray resp = Conexion.consultar("SELECT id_intercambio, id_usuario1, estado FROM intercambio WHERE id_grupo= '"+codigo+"';");
         
         String datos = resp.toJSONString();
-        System.out.println(datos);
+        System.out.println("GET PARTICIPANTES:"+datos);
         response.getWriter().write(datos);
     }
 

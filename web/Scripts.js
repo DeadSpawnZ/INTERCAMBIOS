@@ -145,6 +145,8 @@ function participantes_dom(){
     for(var i = 0; i < participantes.length; i++){
         for(var j = 0; j < arr.length; j++){
             if(participantes[i] === arr[j].id_usuario2){
+            console.log(participantes[i]+" "+participantes[i].length+" || "+arr[j].id_usuario2+" "+arr[j].id_usuario2.length);
+            
                 $("#lista_participantes").append("<li class='list-group-item'>"+arr[j].nombre_relativo+"<span class='badge badge-primary float-right'>"+arr[j].id_usuario2+"</span><i id='"+arr[j].id_usuario2+"' onclick='borra_participante(this.id)' class='fa fa-trash float-right mr-3'></i></li>");
             }
         }
@@ -165,24 +167,28 @@ function borra_participante(id_participante){
 
 function registra_inter(){
     console.log(participantes);
-    $.ajax({
-        type: 'POST',
-        url: 'Agrega_Inter',
-        data: {
-            temas:             $('#temas').val(),
-            monto_max:              $('#monto_max').val(),
-            fecha_inter:            $('#fecha_inter').val(),
-            fecha_limite:           $('#fecha_limite').val(),
-            comentarios:            $('#comentarios').val(),
-            participantes:          JSON.stringify(participantes)
-        },
-        success: function(responseText){
-            if(responseText == "EXITOEXITO"){
-                alert("INTERCAMBIO REGISTRADO BIEN OK");
-                location.href="Intercambio.html";
+    if(participantes.length != 0){
+        $.ajax({
+            type: 'POST',
+            url: 'Agrega_Inter',
+            data: {
+                temas:             $('#temas').val(),
+                monto_max:              $('#monto_max').val(),
+                fecha_inter:            $('#fecha_inter').val(),
+                fecha_limite:           $('#fecha_limite').val(),
+                comentarios:            $('#comentarios').val(),
+                participantes:          JSON.stringify(participantes)
+            },
+            success: function(responseText){
+                if(responseText == "EXITOEXITO"){
+                    alert("INTERCAMBIO REGISTRADO BIEN OK");
+                    location.href="Intercambio.html";
+                }
             }
-        }
-    }); 
+        });
+    }else{
+        alert("AGREGA ALGUNOS PARTICIPANTES, O ACASO NO TIENES AMIGOS?");
+    } 
 }
 
 function consultaInter(codeI){

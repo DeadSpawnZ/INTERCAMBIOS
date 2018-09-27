@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
@@ -46,11 +40,12 @@ public class Agrega_Inter extends HttpServlet {
         String codigo = UUID.randomUUID().toString().replace("-", "").toUpperCase().substring(0, 10);
         String resp = Conexion.insertar("INSERT INTO grupo(codigo, id_creador, temas, monto_max, fecha_inter, fecha_limite, comentarios) VALUES('"+
                 codigo+"','"+id_usuario1+"','"+temas+"','"+monto_max+"','"+fecha_inter+"','"+fecha_limite+"','"+comentarios+"');");
-       String[] parts = participantes.replace("[","").replace("]","").replace((char)34, (char)0).split(",");
+        String[] parts = participantes.replace("[","").replace("]","").split(",");
         String resp2 = "";
         for(int i = 0; i < parts.length; i++){
             resp2 = Conexion.insertar("INSERT INTO intercambio(id_grupo, id_usuario1, estado) VALUES('"+
-                codigo+"','"+parts[i]+"','"+estado+"');");
+                codigo+"','"+parts[i].substring(1, parts[i].length()-1)+"','"+estado+"');");
+            System.out.println("inter: "+parts[i].substring(1, parts[i].length()-1));
         }
         Conexion.insertar("INSERT INTO intercambio(id_grupo, id_usuario1, estado) values ('"+codigo+"', '"+id_usuario1+"', 'CONFIRMADO');");
         response.getWriter().write(resp+resp2);

@@ -38,17 +38,37 @@
                     location.href="index.html";
                 }
             });
-            $.get('listarIntercambiosDentro', function(json){
-                var arr= JSON.parse(json);
-                for(var i = 0; i < arr.length; i++){
-                    $("#inters").append("<div><span>Código de intercambio: <b>"+arr[i].codigo+"</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creado por: "+arr[i].id_creador+
-                            ((arr[i].id_usuario2==null)?"<br><span style='color:#048bca;'>El sorteo no se ha realizado aún</span>":"<br>Te tocó darle regalo a <span style='color:#048bca;'>"+arr[i].id_usuario2+"</span>&nbsp;&nbsp;&nbsp;&nbsp;Prefirió el tema de <b>"+arr[i].tema+"</b>")
-                            +"</div>");
-                }
-            });
+            function getInterOP(){ ///AQUI LE MOVIIIIII
+                $.get('listarIntercambiosDentro', function(json){
+                    var arr= JSON.parse(json);
+                    for(var i = 0; i < arr.length; i++){
+                        $("#inters").append("<div><span>Código de intercambio: <b>"+arr[i].codigo+"</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creado por: "+arr[i].id_creador+
+                                ((arr[i].id_usuario2==null)?"<br><span style='color:#048bca;'>El sorteo no se ha realizado aún</span></br></br><span id ="+arr[i].codigo+" style='font-size:12px;'></span>":"<br>Te tocó darle regalo a <span style='color:#048bca;'>"+arr[i].id_usuario2+"</span>&nbsp;&nbsp;&nbsp;&nbsp;Prefirió el tema de <b>"+arr[i].tema+"</b>")
+                                +"</div>");
+                        getPart(arr[i].codigo);
+                    }
+                });
+            }
+            
+            function getPart(codeINTER){
+                $.ajax({
+                    type: 'POST',
+                    url: 'get_participantes',
+                    data: {codigo:codeINTER
+                    },
+                    success: function(JSONr){
+                        var brothers = JSON.parse(JSONr);
+                        var temp="";
+                        for(var i = 0; i < brothers.length; i++){
+                            temp = brothers[i].id_usuario1.toString();
+                            $("#"+codeINTER).append(temp+" "+brothers[i].estado.toString()+"<br/>");
+                        }
+                    }
+                });
+            }
         </script>
     </head>
-    <body id="page-top" onload="iniciaKey()">
+    <body id="page-top" onload="iniciaKey(); getInterOP();">
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
             <a id="nombre_usuario" class="navbar-brand mr-1" href="Intercambio.html">Hola, </a>

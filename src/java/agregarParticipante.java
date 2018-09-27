@@ -31,7 +31,7 @@ public class agregarParticipante extends HttpServlet {
         String id_usuario1 =(String)request.getParameter("id_usuario1"),
                 codigo=(String)request.getParameter("codigo");
         
-        String  resp= Conexion.insertar("insert into intercambio(id_grupo, id_usuario1,estado) values('"+codigo+"','"+(char)0+id_usuario1+(char)0+"','PENDIENTE');");
+        String  resp= Conexion.insertar("insert into intercambio(id_grupo, id_usuario1,estado) values('"+codigo+"','"+id_usuario1+"','PENDIENTE');");
         System.out.println(resp);
     }
 

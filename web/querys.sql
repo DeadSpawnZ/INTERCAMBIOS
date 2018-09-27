@@ -12,6 +12,11 @@ CREATE TABLE usuario(
     PRIMARY KEY (correo)
 );
 
+INSERT INTO usuario VALUES
+("galeomh@hotmail.com", "leo", "Gabriel", "Montoya", "Hernandez", "DeadSpawnZ"),
+("brandonshk@gmail.com", "random", "Brandon", "Espinosa", "Resendiz", "Brandonshk07"),
+("kev.97@yahoo.com", "kevin", "Kevin", "Gomez", "Gonzales", "KevOut");
+
 CREATE TABLE usuario_n(
 	correo VARCHAR(30) NOT NULL,
     PRIMARY KEY (correo)
@@ -60,7 +65,3 @@ create table amistad_n (
 	 foreign key (id_usuario2) references usuario_n(correo) on delete cascade, 
 	 primary key(id_amistad_n)
  );
- 
- select * from amistad_n;
- select * from usuario_n;
- select * from intercambio;

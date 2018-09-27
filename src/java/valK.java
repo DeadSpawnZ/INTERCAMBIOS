@@ -40,7 +40,7 @@ public class valK extends HttpServlet {
         String codigo=(String) request.getParameter("codigo");
         
         String resp= "El intercambio no existe o bien no has sido invitado.";
-        JSONArray jresp= Conexion.consultar("select id_intercambio, estado from intercambio where id_grupo='"+codigo+"' and id_usuario1='"+(char)0+id_usuario1+(char)0+"';");
+        JSONArray jresp= Conexion.consultar("select id_intercambio, estado from intercambio where id_grupo='"+codigo+"' and id_usuario1='"+id_usuario1+"';");
         if(jresp.size()>0){
             JSONObject temp= (JSONObject)jresp.get(0);
             if(temp.get("estado").toString().equals("CONFIRMADO")){

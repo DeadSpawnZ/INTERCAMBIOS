@@ -34,7 +34,7 @@ public class listarIntercambiosDentro extends HttpServlet {
         HttpSession misession = (HttpSession) request.getSession();
         String id_usuario1 = (String) misession.getAttribute("id_usuario");
         //select codigo from intercambio natural join grupo where intercambio.id_usuario1='gabo@gmail.com' and id_creador<>'' and id_grupo=codigo 
-        JSONArray resp = Conexion.consultar("select codigo, id_creador, tema, id_usuario2  from intercambio natural join grupo where intercambio.id_usuario1='"+(char)0+id_usuario1+(char)0+"'  and id_creador<>'"+id_usuario1+"' and id_grupo=codigo and estado='CONFIRMADO';");
+        JSONArray resp = Conexion.consultar("select codigo, id_creador, tema, id_usuario2  from intercambio natural join grupo where intercambio.id_usuario1='"+id_usuario1+"'  and id_creador<>'"+id_usuario1+"' and id_grupo=codigo and estado='CONFIRMADO';");
         System.out.println("Inters: "+resp.toJSONString());
         String datos = resp.toJSONString();
         response.getWriter().write(datos);

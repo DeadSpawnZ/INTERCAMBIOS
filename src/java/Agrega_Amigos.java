@@ -31,7 +31,7 @@ public class Agrega_Amigos extends HttpServlet {
         String nombre_relativo = (String)request.getParameter("nombre_relativo");
         JSONArray user_reg = Conexion.consultar("SELECT * FROM usuario WHERE correo = '"+id_usuario2+"';");
         if(user_reg.size() == 1){
-            JSONArray reg_amigo = Conexion.consultar("SELECT * FROM amistad WHERE id_usuario1 = '"+id_usuario1+" AND id_usuario2 = '"+id_usuario2+"';");
+            JSONArray reg_amigo = Conexion.consultar("SELECT * FROM amistad WHERE id_usuario1 = '"+id_usuario1+"' AND id_usuario2 = '"+id_usuario2+"';");
             if(reg_amigo.size() == 1){
                 response.getWriter().write("YA ES TU AMIGO");
             }else{

@@ -32,8 +32,9 @@ function key2(){
     $.get("valK2", {codigo:clave, tema:tema}, function(resp){
         if(resp=="EXITO"){
             alert("Invitación confirmada");
-             $("#ing2").hide();
-             $("#ing1").show();
+            $("#ing2").hide();
+            $("#ing1").show();
+            getInterOP(); ///AQUI LE MOVIIIIII
         }else{
             alert(resp);
         }
@@ -116,9 +117,9 @@ function agrega_participante(id_participante){
     console.log(participantes);
     var nuevo_p = {"estado":"PENDIENTE", "id_intercambio":0, "id_usuario1":id_participante};
     var flg= false;
-    for(var i=0; i<participantes.length;i++){
-        if(participantes[i].id_usuario1==nuevo_p.id_usuario1){
-            flg= true;
+    for(var i=0; i < participantes.length; i++){
+        if(participantes[i].id_usuario1 == nuevo_p.id_usuario1){
+            flg = true;
         }
     }
     if(flg){
@@ -177,7 +178,6 @@ function sp(){
         var temp="", temp2="";
         for(var i = 0; i < participantes.length; i++){
             temp = participantes[i].id_usuario1.toString();
-            temp = temp.substr(1,temp.length-2);
             for(var j = 0; j < arr.length; j++){
                 temp2= arr[j].id_usuario2.toString();
                 if(temp==temp2){
@@ -209,7 +209,6 @@ function set_participantes(codigo){
         var temp="", temp2="";
         for(var i = 0; i < participantes.length; i++){
             temp = participantes[i].id_usuario1.toString();
-            temp = temp.substr(1,temp.length-2);
             for(var j = 0; j < arr.length; j++){
                 temp2= arr[j].id_usuario2.toString();
                 if(temp==temp2){
