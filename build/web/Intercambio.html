@@ -76,7 +76,12 @@
                         <span>Mis intercambios</span>
                     </a>
                 </li>
-                
+                <li class="nav-item">
+                    <a class="nav-link" href="Intercambio_key.html">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>Intercambios dentro</span>
+                    </a>
+                </li>
                 <li>
                     <div class="card text-white bg-dark mb-3">
                         <div class="card-header">
@@ -109,10 +114,10 @@
                             <form id="nInter" onsubmit="registra_inter(); return false">
                                 Temas del intercambio <input id="temas" class="form-control" type="text" required/><br/>
                                 Monto máximo $ <input id="monto_max" class="form-control" type="number" required> pesos<br/>
-                                Fecha del intercambio <input id="fecha_inter" class="form-control" type="date" required><br/>
-                                Fecha límite para registrarse <input id="fecha_limite" class="form-control" type="date" required><br/>
+                                Fecha del intercambio <input id="fecha_inter" class="form-control" type="date" min="2018-09-28" required><br/>
+                                Fecha límite para registrarse <input id="fecha_limite" class="form-control" type="date" min="2018-09-28" required><br/>
                                 Comentarios<br>
-                                <textarea id="comentarios" class="form-control" rows="4"></textarea>
+                                <textarea id="comentarios" style='resize:none;font-size:15px;' class="form-control" rows="4"></textarea>
                                 Participantes
                                 <ul id="lista_participantes" class="list-group">
                                     <!--PARTICIPANTES AGREGADOS DINAMICAMENTE-->

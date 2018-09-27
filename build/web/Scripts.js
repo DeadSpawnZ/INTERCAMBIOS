@@ -91,7 +91,7 @@ function consulta_amigos(){
             console.log("AMIGOS CONSULTADOS");
             console.log(arr);
             for(var i = 0; i < arr.length; i++){
-                $("#lista_amigos").append("<li style='cursor: pointer' id="+arr[i].id_usuario2+" class='list-group-item' ondblclick='agrega_participante(this.id)'>"+arr[i].nombre_relativo+"<span class='badge badge-success float-right'>"+arr[i].id_usuario2+"</span></li>");
+                $("#lista_amigos").append("<li style='cursor: pointer' id='"+arr[i].id_usuario2+"' class='list-group-item' ondblclick='agrega_participante(this.id)'>"+arr[i].nombre_relativo+"<span class='badge badge-success float-right'>"+arr[i].id_usuario2+"</span></li>");
             }
         }
     });
@@ -108,7 +108,7 @@ function consulta_amigos_n(){
             console.log("AMIGOS CONSULTADOS N");
             console.log(arr_n);
             for(var i = 0; i < arr_n.length; i++){
-                $("#lista_amigos").append("<li style='cursor: pointer' id="+arr_n[i].id_usuario2+" class='list-group-item' ondblclick='agrega_participante(this.id)'>"+arr_n[i].nombre_relativo+"<span class='badge badge-info float-right'>"+arr_n[i].id_usuario2+"</span></li>");
+                $("#lista_amigos").append("<li style='cursor: pointer' id='"+arr_n[i].id_usuario2+"' class='list-group-item' ondblclick='agrega_participante(this.id)'>"+arr_n[i].nombre_relativo+"<span class='badge badge-info float-right'>"+arr_n[i].id_usuario2+"</span></li>");
             }
         }
     });
@@ -145,12 +145,12 @@ function participantes_dom(){
     for(var i = 0; i < participantes.length; i++){
         for(var j = 0; j < arr.length; j++){
             if(participantes[i] === arr[j].id_usuario2){
-                $("#lista_participantes").append("<li class='list-group-item'>"+arr[j].nombre_relativo+"<span class='badge badge-primary float-right'>"+arr[j].id_usuario2+"</span><i id="+arr[j].id_usuario2+" onclick='borra_participante(this.id)' class='fa fa-trash float-right mr-3'></i></li>");
+                $("#lista_participantes").append("<li class='list-group-item'>"+arr[j].nombre_relativo+"<span class='badge badge-primary float-right'>"+arr[j].id_usuario2+"</span><i id='"+arr[j].id_usuario2+"' onclick='borra_participante(this.id)' class='fa fa-trash float-right mr-3'></i></li>");
             }
         }
         for(var j = 0; j < arr_n.length; j++){
             if(participantes[i] === arr_n[j].id_usuario2){
-                $("#lista_participantes").append("<li class='list-group-item'>"+arr_n[j].nombre_relativo+"<span class='badge badge-primary float-right'>"+arr_n[j].id_usuario2+"</span><i id="+arr_n[j].id_usuario2+" onclick='borra_participante(this.id)' class='fa fa-trash float-right mr-3'></i></li>");
+                $("#lista_participantes").append("<li class='list-group-item'>"+arr_n[j].nombre_relativo+"<span class='badge badge-primary float-right'>"+arr_n[j].id_usuario2+"</span><i id='"+arr_n[j].id_usuario2+"' onclick='borra_participante(this.id)' class='fa fa-trash float-right mr-3'></i></li>");
             }
         }
     }

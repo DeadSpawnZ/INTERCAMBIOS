@@ -40,6 +40,42 @@
         <servlet-name>get_participantes</servlet-name>
         <servlet-class>get_participantes</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getValues</servlet-name>
+        <servlet-class>getValues</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>borrarParticipante</servlet-name>
+        <servlet-class>borrarParticipante</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>agregarParticipante</servlet-name>
+        <servlet-class>agregarParticipante</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Modifica_Inter</servlet-name>
+        <servlet-class>Modifica_Inter</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>sorteo_b</servlet-name>
+        <servlet-class>sorteo_b</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Borrar_Inter</servlet-name>
+        <servlet-class>Borrar_Inter</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>sorteo</servlet-name>
+        <servlet-class>sorteo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listarIntercambiosDentro</servlet-name>
+        <servlet-class>listarIntercambiosDentro</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getSorteo</servlet-name>
+        <servlet-class>getSorteo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Registro</servlet-name>
         <url-pattern>/Servlet_Registro</url-pattern>
@@ -79,6 +115,42 @@
     <servlet-mapping>
         <servlet-name>get_participantes</servlet-name>
         <url-pattern>/get_participantes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getValues</servlet-name>
+        <url-pattern>/getValues</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>borrarParticipante</servlet-name>
+        <url-pattern>/borrarParticipante</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>agregarParticipante</servlet-name>
+        <url-pattern>/agregarParticipante</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Modifica_Inter</servlet-name>
+        <url-pattern>/Modifica_Inter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sorteo_b</servlet-name>
+        <url-pattern>/sorteo_b</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Borrar_Inter</servlet-name>
+        <url-pattern>/Borrar_Inter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sorteo</servlet-name>
+        <url-pattern>/sorteo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listarIntercambiosDentro</servlet-name>
+        <url-pattern>/listarIntercambiosDentro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getSorteo</servlet-name>
+        <url-pattern>/getSorteo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

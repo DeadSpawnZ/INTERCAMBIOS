@@ -7,6 +7,33 @@ and open the template in the editor.
     Created on : 24/09/2018, 09:19:55 PM
     Author     : Brandon
 */
+.see_interqqqq{
+    font-size: 15px;
+    color:#444;
+}
+
+.see_interqqqq span{
+    color:#048bca;
+}
+
+.buttonB{
+    border-radius:5px;
+    background:#666;
+    color:#fff;
+    padding:5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align:center;
+    border:0;
+    font-size:15px;
+    cursor:pointer;
+    margin-left: 300px;
+}
+.disabled:disabled{
+    background:transparent;
+    color:#666;border:0;
+    height: auto;
+}
 .pendiente{
     color:#c69500!important;
     font-size: 12px;

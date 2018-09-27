@@ -6,21 +6,17 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
-import java.util.Random;
-import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 
 /**
  *
- * @author Spawn
+ * @author Brandon
  */
-public class Agrega_Inter extends HttpServlet {
+public class sorteo_b extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,26 +30,15 @@ public class Agrega_Inter extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/plain");
-        HttpSession misession = (HttpSession) request.getSession();
-        String id_usuario1 = (String) misession.getAttribute("id_usuario");
-        String temas = (String)request.getParameter("temas");
-        String monto_max = (String)request.getParameter("monto_max");
-        String fecha_inter = (String)request.getParameter("fecha_inter");
-        String fecha_limite = (String)request.getParameter("fecha_limite");
-        String comentarios = (String)request.getParameter("comentarios");
-        String participantes = (String)request.getParameter("participantes");
-        String estado = "PENDIENTE";
-        String codigo = UUID.randomUUID().toString().replace("-", "").toUpperCase().substring(0, 10);
-        String resp = Conexion.insertar("INSERT INTO grupo(codigo, id_creador, temas, monto_max, fecha_inter, fecha_limite, comentarios) VALUES('"+
-                codigo+"','"+id_usuario1+"','"+temas+"','"+monto_max+"','"+fecha_inter+"','"+fecha_limite+"','"+comentarios+"');");
-       String[] parts = participantes.replace("[","").replace("]","").replace((char)34, (char)0).split(",");
-        String resp2 = "";
-        for(int i = 0; i < parts.length; i++){
-            resp2 = Conexion.insertar("INSERT INTO intercambio(id_grupo, id_usuario1, estado) VALUES('"+
-                codigo+"','"+parts[i]+"','"+estado+"');");
+        String codigo= (String)request.getParameter("codigo"), resps;
+        JSONArray resp=Conexion.consultar("select id_usuario1 from intercambio where id_grupo='"+codigo+"' and id_usuario2 is not null;");
+        System.out.println(resp.toString());
+        if(resp.toString().equals("[]")){
+            resps= "no hecho";
+        }else{
+            resps= "hecho";
         }
-        Conexion.insertar("INSERT INTO intercambio(id_grupo, id_usuario1, estado) values ('"+codigo+"', '"+id_usuario1+"', 'CONFIRMADO');");
-        response.getWriter().write(resp+resp2);
+        response.getWriter().write(resps);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -15,22 +15,9 @@
         <link href="css/adapt.css" rel="stylesheet" type="text/css"/>
         <!-- Custom styles for this template-->
         <link href="css/sb-admin.css" rel="stylesheet">
-        <script src="Scripts.js" type="text/javascript"></script>
+        <script src="Scripts2.js" type="text/javascript"></script>
         <script src="ajax.js" type="text/javascript"></script>
         <script src="vendor/jquery/jquery.min.js" type="text/javascript"></script>
-        <script>
-            $.get('sessionFake', function(status){
-                if(status==="304"){
-                    location.href="index.html";
-                }
-            });
-            $.get('listarIntercambios', function(json){
-                var arr= JSON.parse(json);
-                for(var i = 0; i < arr.length; i++){
-                    $("#inters").append("<div style='cursor: pointer' id='"+arr[i].codigo+"' onclick='consultaInter(this.id)'><span>Código de intercambio: <b>"+arr[i].codigo+"</b></span>Fecha de intercambio: "+arr[i].fecha_inter+"&nbsp;&nbsp;&nbsp;&nbsp;Fecha de limite: "+arr[i].fecha_limite+"</div>");
-                }
-            });
-        </script>
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -45,9 +32,18 @@
         <script src="js/sb-admin.min.js"></script>
         <!-- Demo scripts for this page-->
         <script src="js/demo/datatables-demo.js"></script>
-        
+        <script>
+            $.get('sessionFake', function(status){
+                if(status==="304"){
+                    location.href="index.html";
+                }
+            });
+            $.get('getSorteo',{codigo:localStorage.getItem("key")},function(code){
+                $("#see_inter").html(code);
+            });
+        </script>
     </head>
-    <body id="page-top" onload="inicia()">
+    <body id="page-top" onload="iniciaHecho()">
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
             <a id="nombre_usuario" class="navbar-brand mr-1" href="Intercambio.html">Hola, </a>
@@ -91,19 +87,22 @@
             </ul>
 
             <div id="content-wrapper">
-
                 <div class="container-fluid">
                 <div class="row m-0">
+                <!-- Intercambiometro3000-->
                     <div class="card mb-3 col-8 pl-0 pr-0">
-                    <div class="card-header">
+                        <div class="card-header">
                             <i class="fas fa-gift"></i>
-                            Tus intercambios
-                    </div>
-                    <div id='inters' class="card-body">
-                        
-                    </div>
+                            Sorteo <b id='intC'></b>
+                        </div>
+                        <div id='see_inter' class="card-body">
+                            
+                        </div>
+                        <div class="card-footer small text-muted"></div>
                     </div>
                 </div>
+                
+                
                 <!-- Sticky Footer -->
                     <footer class="sticky-footer">
                         <div class="container my-auto">
